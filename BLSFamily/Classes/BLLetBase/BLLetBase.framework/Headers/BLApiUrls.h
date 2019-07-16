@@ -1076,4 +1076,60 @@
  */
 - (NSString *)deleteTriggerURL;
 
+#pragma mark - 新家庭接口
+
+//创建家庭
+- (NSString *)sFamilyCreateURL;
+//删除家庭
+- (NSString *)sFamilyDeleteURL;
+//修改家庭信息
+- (NSString *)sFamilyModilyInfoURL;
+//修改家庭图标
+- (NSString *)sFamilyModilyIconURL;
+//获取家庭图标
+- (NSString *)sFamilyGetIconURL;
+//获取家庭基本信息列表
+- (NSString *)sFamilyListURL;
+//获取指定家庭基本信息
+- (NSString *)sFamilyBaseInfoURL;
+//获取家庭邀请二维码
+- (NSString *)sFamilyMemberReqQrcodeURL;
+//根据二维码获取家庭基本信息
+- (NSString *)sFamilyMemberScanQrcodeURL;
+//根据二维码加入家庭
+- (NSString *)sFamilyMemberJoinURL;
+//获取家庭成员列表
+- (NSString *)sFamilyMemberListURL;
+//删除家庭成员
+- (NSString *)sFamilyMemberDeleteURL;
+//转让家庭管理员角色
+- (NSString *)sFamilyMemberTransfermasterURL;
+//主动退出家庭
+- (NSString *)sFamilyMemberQuiteURL;
+//获取房间列表
+- (NSString *)sFamilyRoomListURL;
+//房间管理
+- (NSString *)sFamilyRoomManageURL;
+//获取家庭下设备列表
+- (NSString *)sFamilyDeviceListURL;
+//设备管理
+- (NSString *)sFamilyDeviceManageURL;
+//设备属性修改
+- (NSString *)sFamilyDeviceUpdateAttributeURL;
+//获取用户下设备列表
+- (NSString *)sFamilyUserDeviceListURL;
+//获取场景列表
+- (NSString *)sFamilySceneListURL;
+//场景管理
+- (NSString *)sFamilySceneManageURL;
+//场景属性修改
+- (NSString *)sFamilySceneUpdateAttributeURL;
+//增加授权
+- (NSString *)sFamilyAddAuthURL;
+//删除授权
+- (NSString *)sFamilyDelAuthURL;
+//查询授权
+- (NSString *)sFamilyQueryAuthURL;
+
+
 @end
