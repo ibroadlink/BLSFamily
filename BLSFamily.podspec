@@ -29,19 +29,10 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'BLSFamily/Classes/**/*'
   
-  s.subspec 'BLLetBase' do |bs|
-      bs.vendored_frameworks = 'BLSFamily/Classes/BLLetBase/*.{framework}'
-      bs.dependency 'AFNetworking'
-  end
-  
-  s.subspec 'BLSFamily' do |fs|
-      fs.vendored_frameworks = 'BLSFamily/Classes/BLSFamily/*.{framework}'
-      fs.dependency   'BLSFamily/BLLetBase'
+  s.vendored_frameworks = 'BLSFamily/Classes/*.{framework}'
+  s.dependency   'BLLet/BLLetBase'
       
-  end
   
   # s.resource_bundles = {
   #   'BLSFamily' => ['BLSFamily/Assets/*.png']
