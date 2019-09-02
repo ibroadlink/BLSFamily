@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BLSFamily'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'A short description of BLSFamily.'
 
 # This description is used to generate tags and improve search results.
@@ -30,9 +30,8 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
   
-  s.subspec 'BLLetBase' do |bs|
-      bs.vendored_frameworks = 'BLLet/Classes/BLLetBase/*.{framework}'
-      bs.dependency 'AFNetworking'
+  s.vendored_frameworks = 'BLSFamily/Classes/*.{framework}'
+  s.dependency   'BLLet/BLLetBase'
   end
       
   
