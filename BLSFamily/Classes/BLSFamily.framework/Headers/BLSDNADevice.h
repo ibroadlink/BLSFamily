@@ -1,15 +1,13 @@
 //
-//  BLSDNADevice.h
-//  BLSFamily
+//  DNADevice.h
+//  Let
 //
-//  Created by hongkun.bai on 2019/7/15.
-//  Copyright © 2019 hongkun.bai. All rights reserved.
+//  Created by yzm on 16/5/16.
+//  Copyright © 2016年 BroadLink Co., Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <BLLetBase/BLLetBase.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSDNADevice : NSObject
 
@@ -117,8 +115,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) Boolean refreshStateFlag;
 
+/**
+ 类型，实体设备(0),其他平台虚拟设备(1),分组设备(2),分路设备(3),功能模块虚拟设备(4)
+ */
+@property (nonatomic, assign) NSUInteger deviceFlag;
+
+/**
+ 包含的设备
+ */
+@property (nonatomic, strong) NSArray *containDevices;
+
 - (NSString *)toJsonString;
-
 @end
-
-NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  BLNewFamilyManager.h
+//  BLSFamilyManager.h
 //  BLAPPSDKDemo
 //
 //  Created by admin on 2019/2/19.
@@ -18,20 +18,17 @@
 #import "BLSQueryScenesResult.h"
 #import "BLSAddSceneResult.h"
 #import "BLSAddAuthResult.h"
+#import "BLLinkageInfo.h"
+#import "BLSVirtualidResult.h"
+#import "BLSGroupDevice.h"
+#import "BLSGroupDeviceResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSFamilyManager : NSObject
 
-@property (nonatomic, copy)NSString *userid;
-@property (nonatomic, copy)NSString *loginsession;
-@property (nonatomic, copy)NSString *licenseid;
+/** you need set familyid by yourself **/
 @property (nonatomic, copy)NSString *familyid;
-
-@property (nonatomic, strong)BLSFamilyInfo *currentFamilyInfo;
-@property (nonatomic, strong)BLSEndpointInfo *currentEndpointInfo;
-@property (nonatomic, copy)NSArray *endpointList;
-@property (nonatomic, copy)NSArray *roomList;
 
 + (instancetype)sharedFamily;
 
@@ -132,6 +129,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)transferFamilyMasterToUserid:(nonnull NSString *)userid completionHandler:(nullable void (^)(BLBaseResult * __nonnull result))completionHandler;
 
+
+/**
+ Destory Family
+
+ @param verifyCode verifyCode,{“phone”:“152”,“email”:“”,“type”:“phone”,“code”:“”,“countrycode”:“”,“companyid”:“”,“codetype”:“”}
+ @param completionHandler Callback  result
+ */
+- (void)destoryFamilyToVerifyCode:(nonnull NSString *)verifyCode completionHandler:(nullable void (^)(BLBaseResult * __nonnull result))completionHandler;
+
 /**
  Get all family rooms
  
@@ -155,6 +161,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param completionHandler  Callback with get result
  */
 - (void)getEndpointsWithCompletionHandler:(nullable void (^)(BLSQueryEndpointsResult * __nonnull result))completionHandler;
+
+
+/**
+ Get all endpoints by userid
+
+ @param querypage querypage
+ @param querystep querystep
+ @param completionHandler Callback with get result
+ */
+- (void)getEndpointsWithQuerypage:(NSInteger)querypage querystep:(NSInteger)querystep completionHandler:(nullable void (^)(BLSQueryEndpointsResult * __nonnull result))completionHandler;
 
 /**
  add endpoints to family
@@ -230,26 +246,63 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)modifyScene:(nonnull NSString *)sceneId attributes:(NSArray *)attributes completionHandler:(nullable void (^)(BLBaseResult * __nonnull result))completionHandler;
 
 /**
- Add auth
+ add Linkage
 
- @param completionHandler  Callback with result
+ @param linkageInfo linkageInfo description
+ @param completionHandler result
  */
-- (void)addAuthWithDid:(nonnull BLSDNADevice *)device param:(NSDictionary *)param completionHandler:(nullable void (^)(BLSAddAuthResult * __nonnull result))completionHandler;
+- (void)addCloudLinkage:(BLLinkageInfo *_Nonnull)linkageInfo completionHandler:(nullable void (^)(BLBaseResult *_Nonnull result))completionHandler;
 
 /**
- delete auth
- 
- @param completionHandler  Callback with result
+ modify Linkage
+
+ @param linkageInfo linkageInfo description
+ @param completionHandler result
  */
-- (void)delAuthWithAuthid:(nonnull NSString *)authid completionHandler:(nullable void (^)(BLBaseResult * __nonnull result))completionHandler;
+- (void)modifyCloudLinkage:(BLLinkageInfo *_Nonnull)linkageInfo completionHandler:(nullable void (^)(BLBaseResult *_Nonnull result))completionHandler;
 
 /**
- query auth
+ delete Linkage
 
- @param ticket ticket
- @param completionHandler Callback with result
+ @param ruleid ruleid description
+ @param completionHandler result
  */
-- (void)queryAuthWithTicket:(nullable NSString *)ticket completionHandler:(nullable void (^)(BLBaseBodyResult * __nonnull result))completionHandler;
+- (void)deleteLinkageInfoWithRuleid:(NSString *_Nonnull)ruleid completionHandler:(nullable void (^)(BLBaseResult *_Nonnull result))completionHandler;
+
+/**
+ query Linkage
+
+ @param completionHandler result
+ */
+- (void)queryCloudLinkageInfoWithCompletionHandler:(nullable void (^)(BLBaseResult *_Nonnull result))completionHandler;
+
+/**
+ get Virtualid
+
+ @param devicetypeFlag 实体设备(0),其他平台虚拟设备(1),分组设备(2),分路设备(3),功能模块虚拟设备(4)
+ @param productId productId description
+ @param gatewayId gatewayId description
+ @param completionHandler result
+ */
+- (void)getVirtualidWithDevicetypeFlag:(NSInteger)devicetypeFlag productId:(NSString *_Nonnull)productId gatewayId:(NSString *_Nonnull)gatewayId completionHandler:(nullable void (^)(BLSVirtualidResult * __nonnull result))completionHandler;
+
+/**
+ group DeviceManage
+
+ @param endpointId endpointId description
+ @param action "add/del",//add 如果重复did则覆盖.del时可以只传did,gatewayid
+ @param groupdevices groupdevices description
+ @param completionHandler result
+ */
+- (void)groupDeviceManageWithEndpointId:(NSString *_Nonnull)endpointId action:(NSString *_Nonnull)action groupdevices:(NSArray<BLSGroupDevice *> *_Nonnull)groupdevices completionHandler:(nullable void (^)(BLBaseResult * __nonnull result))completionHandler;
+
+/**
+ query GroupDevice
+
+ @param endpointId endpointId description
+ @param completionHandler result
+ */
+- (void)queryGroupDeviceWithEndpointId:(NSString *_Nonnull)endpointId completionHandler:(nullable void (^)(BLSGroupDeviceResult * __nonnull result))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END
