@@ -72,5 +72,14 @@ static NSString *const kLinkageQuery = @"/appsync/group/linkage/query";
 //销毁家庭
 static NSString *const kFamilyDestory = @"/appsync/group/member/destoryfamily";
 
+/** 获取虚拟设备id **/
+static NSString *const kGetVirtualId = @"/appsync/group/dev/getvirtualid";
+
+/** 分组设备管理 **/
+static NSString *const kGroupDeviceManage = @"/appsync/group/dev/groupdevice/manage";
+
+/** 分组设备查询 **/
+static NSString *const kGroupDeviceQuery = @"/appsync/group/dev/groupdevice/query";
+
 
 #endif /* BLNewFamilyUrls_h */

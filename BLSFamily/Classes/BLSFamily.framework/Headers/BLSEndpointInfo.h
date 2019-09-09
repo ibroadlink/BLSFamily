@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *irData;
 @property (nonatomic, copy)NSString *vGroup;
 @property (nonatomic, copy)NSString *extend;
+@property (nonatomic, assign) NSUInteger devicetypeFlag;
 
 - (instancetype)initWithBLDevice:(BLSDNADevice *)device;
 
